@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "source_repository": "https://github.com/Anduin2017/HowToCook",
+  "source_commit": "0477799945082b72d6ac5c86a9752fddccf086e4",
+  "snapshot_date": "2026-08-15",
+  "recipe_count": 368,
+  "recommendation_eligible_count": 368,
+  "categories": {
+    "主食": 58,
+    "半成品": 10,
+    "早餐": 25,
+    "水产": 28,
+    "汤与粥": 23,
+    "甜品": 19,
+    "素菜": 63,
+    "荤菜": 110,
+    "酱料和其他材料": 9,
+    "饮料": 23
+  },
+  "markdown_bytes": 771648,
+  "snapshot_sha256": "ddc1d58a017bb1d3316edd544823168d75af8df78a1ba039573f377da0db81c9",
+  "index_sha256": "73f20d18acfd0a18cf73ffe7608cb7c85cb3a3d776d3b589fc65676a001e98d7",
+  "images_included": false
+}

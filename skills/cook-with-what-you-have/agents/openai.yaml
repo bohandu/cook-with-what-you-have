@@ -1,0 +1,4 @@
+interface:
+  display_name: "有啥吃啥"
+  short_description: "根据现有食材、饮食约束和厨具推荐三道可信菜谱与整餐方案"
+  default_prompt: "使用 $cook-with-what-you-have 根据我现有的食材推荐今天能做的菜。"

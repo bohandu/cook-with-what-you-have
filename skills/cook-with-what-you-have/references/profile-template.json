@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "onboarding_completed": false,
+  "default_diners": 1,
+  "pantry": [
+    "食用油",
+    "盐",
+    "清水"
+  ],
+  "equipment": {
+    "available": [
+      "灶台",
+      "锅",
+      "刀",
+      "砧板"
+    ],
+    "unavailable": [],
+    "special_equipment_confirmed": false
+  },
+  "dietary_constraints_confirmed": false,
+  "allergens": [],
+  "avoid": [],
+  "preferences": {
+    "like": [],
+    "dislike": []
+  },
+  "updated_at": null
+}
