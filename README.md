@@ -1,44 +1,57 @@
-# 有啥吃啥
+# 有啥吃啥 🍳
 
-根据家里现有的食材，从 [HowToCook](https://github.com/Anduin2017/HowToCook) 中推荐真正能做、并且说明理由的菜谱。
+打开冰箱：两个鸡蛋、半块豆腐、一把不知道该怎么处理的青菜。
 
-这是一个本地优先的 Agent Skill：不需要服务器、账户、数据库或额外的模型 API Key。安装到 Codex、Claude Code 等兼容 Agent 后，直接用自然语言聊天即可。
+**今晚到底吃什么？**
 
-## 功能
+把家里有的食材告诉「有啥吃啥」，它会从 [HowToCook](https://github.com/Anduin2017/HowToCook) 中挑出真正能做的菜，告诉你还缺什么，也可以直接帮你搭配一顿饭。
 
-- **有啥吃啥**：根据现有食材返回三个按匹配度排序的候选
-- **整餐搭配**：按用餐人数和菜品数量给出三个完整搭配方案
-- **查询菜谱**：忠实展示 HowToCook 原始用料、计算和步骤
-- **随便推荐**：在过敏、忌口、厨具和口味条件内提供灵感
-- **个人档案**：本地记住常备品、厨具、默认人数和饮食习惯
-- **可撤销更新**：每次档案变化都会提示，并支持撤销
+这是一个本地优先的 Agent Skill。安装到 Codex、Claude Code 等兼容 Agent 后，不用注册账户，也不用准备额外的 API Key，直接聊天就能用。
 
-## 示例
+## 它能帮你
+
+- **有啥吃啥**：看看现有食材能做什么，并按匹配程度推荐三个选择
+- **搭配一顿饭**：两个人、两菜一汤，或者几个人吃几个菜，都可以直接说
+- **查询菜谱**：选好菜后，忠实展示 HowToCook 原菜谱的用量、计算和步骤
+- **随便推荐**：没有想法时，结合口味、忌口和厨具给你一点灵感
+- **记住你的习惯**：常备调料、默认人数、过敏原、忌口和厨具不用每次重复说明
+
+## 聊起来是这样的
 
 ```text
-你：我有豆腐、小葱、大蒜、生抽和香油，今天能做什么？
+你：家里只有鸡蛋。两个人吃，今天不想吃肉，可以买点青菜，
+   帮我搭配两菜一汤。
 
-Agent：
-1. 凉拌豆腐 — 高度匹配
-   已有：豆腐、小葱、大蒜、生抽、香油
-   缺少：无需补充关键食材
+有啥吃啥：
+1. 韭菜炒蛋 + 虎皮青椒 + 金针菇汤
+   酸辣下饭，采购也相对少。
+   需要买：韭菜、青椒、金针菇、大蒜、生抽、醋、白糖
 
-2. 葱煎豆腐 — 较为匹配
-   已有：豆腐、葱、盐
-   缺少：青辣椒、鸡精
+2. 西红柿炒鸡蛋 + 蒜蓉空心菜 + 黄瓜皮蛋汤
+   酸甜、蒜香搭配，清爽但不会太寡淡。
 
-3. 皮蛋豆腐 — 补位推荐
-   已有：豆腐、生抽
-   缺少：皮蛋、白砂糖、醋
+3. 油醋爆蛋 + 地三鲜 + 勾芡香菇汤
+   更浓郁、更下饭，不过需要补充的食材也更多。
 
-想看哪一道的完整原菜谱？
+你：就第一套。
+
+有啥吃啥：接下来按两人份展开三道菜的完整用料和步骤……
 ```
 
-首次使用时，Skill 会在一条消息中确认默认用餐人数、过敏与忌口，以及常见特殊厨具。之后直接使用，不会重复询问。
+不需要学习固定指令。你也可以直接说：
+
+```text
+我有豆腐、小葱和生抽，能做什么？
+想吃宫保鸡丁，怎么做？
+随便推荐一道不辣的菜。
+以后默认三个人吃，刚才的修改撤销一下。
+```
+
+第一次使用时，它会一次性确认默认人数、过敏与忌口，以及你有哪些厨具。之后这些信息会保存在本地；每次档案发生变化都会明确提示，也可以撤销。
 
 ## 安装
 
-下载本仓库后，将 [`skills/cook-with-what-you-have`](skills/cook-with-what-you-have) 整个目录复制到 Agent 的个人 Skill 目录。
+下载本仓库，将 [`skills/cook-with-what-you-have`](skills/cook-with-what-you-have) 整个目录复制到你的个人 Skill 目录。
 
 ### Codex
 
@@ -46,17 +59,13 @@ Agent：
 ~/.agents/skills/cook-with-what-you-have/
 ```
 
-Codex 会自动发现新的 Skill；如果没有出现，重启 Codex。官方说明见 [Build skills](https://learn.chatgpt.com/docs/build-skills#where-codex-loads-local-skills)。
-
 ### Claude Code
 
 ```text
 ~/.claude/skills/cook-with-what-you-have/
 ```
 
-Claude Code 通常会实时发现新 Skill；如果此前不存在顶层 `skills` 目录，重启一次。官方说明见 [Extend Claude with skills](https://code.claude.com/docs/en/slash-commands#where-skills-live)。
-
-安装完成后可以直接说：
+如果安装后没有被自动发现，重启一次 Agent。然后直接问：
 
 ```text
 我有鸡蛋、西红柿和青椒，能做什么？
@@ -64,27 +73,12 @@ Claude Code 通常会实时发现新 Skill；如果此前不存在顶层 `skills
 
 也可以显式调用 `$cook-with-what-you-have`（Codex）或 `/cook-with-what-you-have`（Claude Code）。
 
-## 工作方式
+## 本地优先
 
-Skill 随包携带固定版本的 HowToCook 菜谱文本和精简索引。Agent 只搜索与当前食材相关的索引记录，先返回三个简要候选；用户选择后才读取一道完整菜谱，因此不会一次性把全部菜谱放入上下文。
-
-个人档案保存在用户主目录的 `.cook-with-what-you-have/`，不会上传到项目服务器。当前快照包含 368 道菜谱，固定于 HowToCook commit [`0477799`](https://github.com/Anduin2017/HowToCook/commit/0477799945082b72d6ac5c86a9752fddccf086e4)。
-
-首次创建本地个人档案时，受沙箱保护的 Agent 可能会请求一次用户目录写入许可；不需要手动创建文件或填写配置。
-
-## 开发
-
-用户不需要 Python。以下命令只供维护者更新离线数据和运行测试：
-
-```powershell
-python tools\import_howtocook.py --commit 0477799945082b72d6ac5c86a9752fddccf086e4
-python -m unittest discover -s tests -v
-```
-
-产品语义和已确认决策记录在 [`CONTEXT.md`](CONTEXT.md) 与 [`docs/adr`](docs/adr) 中。
+菜谱和检索索引随 Skill 一起提供，个人档案保存在用户主目录的 `.cook-with-what-you-have/` 中。本项目不需要自己的服务器、账户或数据库。
 
 ## 数据来源与许可
 
 菜谱来自 [Anduin2017/HowToCook](https://github.com/Anduin2017/HowToCook)，其内容采用 [Unlicense](skills/cook-with-what-you-have/references/howtocook/LICENSE)。本项目原创部分采用 [MIT License](LICENSE)。
 
-本项目提供菜谱检索与匹配，不构成医疗或营养治疗建议。过敏信息仍应由用户自行核对原料标签和实际烹饪环境。
+过敏用户仍应自行核对食品包装上的原料信息，并留意实际烹饪环境中的交叉接触风险。
